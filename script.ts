@@ -1,37 +1,44 @@
 
 
+
+
 let Choice: boolean = true
 
-
 while(Choice){
-    let Pergunta = String(prompt("Digite uma palavra ou frase"))
+    let Pergunta = String(prompt("Digite o seu usuário e veja se ele é válido !"))
 
-    MaiorPalavra(Pergunta)
+    ValidarNomeUsuario(Pergunta)
 
-    let Finalizar = prompt("Deseja continuar ?")
-
-    if(Finalizar == "Não"){
+    let Continuar = String(prompt("Deseja continuar ?"))
+    if(Continuar == "Não"){
         Choice = false
     }
 }
 
-function MaiorPalavra(Palavra: string){
-    let MaiorPalavraRetorno: string =""
-    let Regex = /[^a-zA-Z0-9\s]/g
+function ValidarNomeUsuario(user: string): boolean{
+    let DecisaoFinalNome: boolean = true
+    let ListaDeNumeros: string[] = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    let Regex = user.replace(/[^a-zA-Z-_]/g, "")
 
-    let ListaPalavras = Palavra.split(" ")
+    if(user.length < 4 || user.length > 25){
+        DecisaoFinalNome = false
+    }   
 
-    ListaPalavras.forEach(Verificate)
-
-    function Verificate(word: string): void{
-        let NumberTeste: string = word.replace(Regex,"")
-        
-   
-        if(NumberTeste.length > MaiorPalavraRetorno.length){
-            MaiorPalavraRetorno = NumberTeste;
+    for(let i = 0; i < ListaDeNumeros.length; i++){
+        if(ListaDeNumeros.includes(user.charAt(0))){
+            DecisaoFinalNome = false
         }
-
+        
     }
 
-    return console.log(MaiorPalavraRetorno)
+    if(user != Regex){
+        DecisaoFinalNome = false
+    }
+
+    if(user[user.length - 1] == "_"){
+        DecisaoFinalNome = false
+    }
+
+    alert(DecisaoFinalNome)
+    return DecisaoFinalNome
 }
