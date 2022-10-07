@@ -17,14 +17,14 @@ while(Choice){
 
 function MaiorPalavra(Palavra: string){
     let MaiorPalavraRetorno: string =""
-    let Regex = /^(?=.*[@!#$%^&*()/\\])[@!#$%^&*()/\\a-zA-Z0-9]{8,20}$/ 
+    let Regex = /[^a-zA-Z0-9\s]/g
 
     let ListaPalavras = Palavra.split(" ")
 
     ListaPalavras.forEach(Verificate)
 
     function Verificate(word: string): void{
-        let NumberTeste: string = word.replace(/[^a-zA-Z\s]/g,"")
+        let NumberTeste: string = word.replace(Regex,"")
         
    
         if(NumberTeste.length > MaiorPalavraRetorno.length){
